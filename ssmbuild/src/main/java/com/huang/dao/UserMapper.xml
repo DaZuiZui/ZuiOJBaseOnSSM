@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huang.dao.UserMapper">
+
+    <!--根据id查找用户-->
+    <select id="queryUserByID" resultType="User">
+        select * from ssmbuild.users where userID = #{userID};
+    </select>
+
+
+    <select id="queryUserByName" resultType="User">
+        select * from ssmbuild.users where userName = #{userName};
+    </select>
+
+    <select id="queryUserPasswordByName" resultType="string">
+        select password from ssmbuild.users where userName = #{userName};
+    </select>
+
+    <select id="queryMaxUserID" resultType="int">
+        select MAX(userID) from ssmbuild.users;
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into ssmbuild.users(userID,userName,password) values(#{userID},#{userName},#{password});
+    </insert>
+
+    <update id="updateUserPassword" parameterType="string">
+        update ssmbuild.users
+        set password = #{password}
+        where userName = #{userName};
+    </update>
+
+    <select id="queryUserName" resultType="string">
+        select userName from ssmbuild.users where userName = #{userName};
+    </select>
+
+    
+
+</mapper>
